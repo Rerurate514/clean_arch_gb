@@ -7,7 +7,16 @@ import 'package:clean_arch_gb/infrastructure/factory/repository_factory_impl.dar
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'github_repository_impl.g.dart';
+
 @riverpod
+GithubRepository githubRepository(Ref ref) {
+  return GithubRepositoryImpl(
+    githubApiDatasourceImpl: ref.watch(githubApiDatasourceImplProvider), 
+    repositoryFactoryImpl: ref.watch(repositoryFactoryImplProvider)
+  );
+}
+
 GithubRepositoryImpl githubApiDatasourceImpl (Ref ref) {
   return GithubRepositoryImpl(
     githubApiDatasourceImpl: ref.watch(githubApiDatasourceImplProvider), 
