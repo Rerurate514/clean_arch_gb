@@ -12,7 +12,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'github_api_datasource_impl.g.dart';
 
 @riverpod
-GithubApiDatasourceImpl githubApiDatasourceImpl (Ref ref) {
+GithubApiDatasource githubApiDatasourceImpl (Ref ref) {
   return GithubApiDatasourceImpl(
     dio: ref.watch(dioProvider)
   );
