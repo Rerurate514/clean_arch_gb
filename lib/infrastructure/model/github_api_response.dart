@@ -1,3 +1,5 @@
+import 'package:clean_arch_gb/infrastructure/model/github_api_response_license.dart';
+import 'package:clean_arch_gb/infrastructure/model/github_api_response_owner.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'github_api_response.freezed.dart';
@@ -5,7 +7,7 @@ part 'github_api_response.g.dart';
 
 @freezed
 sealed class GithubApiResponse with _$GithubApiResponse {
-  factory GithubApiResponse({
+  const factory GithubApiResponse({
     // === Repository Details ===
     required int id,
     @JsonKey(name: 'node_id') required String nodeId,
@@ -70,8 +72,6 @@ sealed class GithubApiResponse with _$GithubApiResponse {
     @JsonKey(name: 'open_issues_count') required int openIssuesCount,
     @JsonKey(name: 'open_issues') required int openIssues,
     required int watchers,
-    @JsonKey(name: 'network_count') required int networkCount,
-    @JsonKey(name: 'subscribers_count') required int subscribersCount,
 
     @JsonKey(name: 'has_issues') required bool hasIssues,
     @JsonKey(name: 'has_projects') required bool hasProjects,
@@ -82,28 +82,10 @@ sealed class GithubApiResponse with _$GithubApiResponse {
     required bool archived,
     required bool disabled,
     @JsonKey(name: 'mirror_url') String? mirrorUrl,
-    required String? license,
-    @JsonKey(name: 'temp_clone_token') String? tempCloneToken,
+    required License? license,
 
-  // === Owner Information ===
-    @JsonKey(name: 'owner.id') required int ownerId,
-    @JsonKey(name: 'owner.node_id') required String ownerNodeId,
-    @JsonKey(name: 'owner.login') required String ownerLogin,
-    @JsonKey(name: 'owner.avatar_url') required String ownerAvatarUrl,
-    @JsonKey(name: 'owner.gravatar_id') required String ownerGravatarId,
-    @JsonKey(name: 'owner.url') required String ownerUrl,
-    @JsonKey(name: 'owner.html_url') required String ownerHtmlUrl,
-    @JsonKey(name: 'owner.followers_url') required String ownerFollowersUrl,
-    @JsonKey(name: 'owner.following_url') required String ownerFollowingUrl,
-    @JsonKey(name: 'owner.gists_url') required String ownerGistsUrl,
-    @JsonKey(name: 'owner.starred_url') required String ownerStarredUrl,
-    @JsonKey(name: 'owner.subscriptions_url') required String ownerSubscriptionsUrl,
-    @JsonKey(name: 'owner.organizations_url') required String ownerOrganizationsUrl,
-    @JsonKey(name: 'owner.repos_url') required String ownerReposUrl,
-    @JsonKey(name: 'owner.events_url') required String ownerEventsUrl,
-    @JsonKey(name: 'owner.received_events_url') required String ownerReceivedEventsUrl,
-    @JsonKey(name: 'owner.type') required String ownerType,
-    @JsonKey(name: 'owner.site_admin') required bool ownerSiteAdmin,
+    // === Owner Information (now nested) ===
+    required Owner owner,
   }) = _GithubApiResponse;
 
   factory GithubApiResponse.fromJson(Map<String, dynamic> json) =>
