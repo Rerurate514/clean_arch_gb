@@ -34,7 +34,12 @@ class _HomeComponentsState extends ConsumerState<HomeComponents> {
             );
           }, 
           error: (Object error, StackTrace stackTrace) { 
-            return Text(stackTrace.toString());
+            return Column(
+              children: [
+                Text(error.toString()),
+                Text(stackTrace.toString())
+              ],
+            );
           }, 
           loading: () {  
             return const Center(
