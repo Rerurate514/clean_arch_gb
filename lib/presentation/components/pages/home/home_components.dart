@@ -21,7 +21,8 @@ class _HomeComponentsState extends ConsumerState<HomeComponents> {
         SearchField(onSearch: (query) {
           ref.read(repositoryNotifierProvider.notifier).getRepositories(query);
         }),
-        state.when(
+        Expanded(
+          child: state.when(
           data: (List<Repository> data) { 
             return ListView.builder(
               itemCount: data.length,
@@ -36,8 +37,11 @@ class _HomeComponentsState extends ConsumerState<HomeComponents> {
             return Text(stackTrace.toString());
           }, 
           loading: () {  
-            return CircularProgressIndicator();
-          })
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }),
+        )
       ],
     );
   }
