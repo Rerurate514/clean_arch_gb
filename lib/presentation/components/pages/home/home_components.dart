@@ -1,4 +1,5 @@
 import 'package:clean_arch_gb/domain/entity/repository.dart';
+import 'package:clean_arch_gb/presentation/components/pages/home/repository_card.dart';
 import 'package:clean_arch_gb/presentation/components/util/search_field.dart';
 import 'package:clean_arch_gb/presentation/notifier/repository_notifier.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,8 @@ class _HomeComponentsState extends ConsumerState<HomeComponents> {
             return ListView.builder(
               itemCount: data.length,
               itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: Text("${data[index]}"),
-                );
+                final Repository repository = data[index];
+                return RepositoryCard(repository: repository);
               }
             );
           }, 
