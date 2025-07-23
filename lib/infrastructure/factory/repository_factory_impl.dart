@@ -37,7 +37,7 @@ class RepositoryFactoryImpl implements RepositoryFactory {
   Repository createFromModel(GithubApiResponse repository) {
     return Repository(
       repositoryName: repository.name, 
-      ownerIconUrl: repository.ownerAvatarUrl, 
+      ownerIconUrl: repository.owner.avatarUrl, 
       projectLanguage: repository.language ?? "", 
       starCount: repository.stargazersCount, 
       watcherCount: repository.watchersCount, 
