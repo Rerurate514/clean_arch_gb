@@ -49,7 +49,7 @@ class GithubApiDatasourceImpl implements GithubApiDatasource {
 
   Future<Response<dynamic>> _executeRequest(Uri uri) async {
     final response = await _dio.get(
-      uri.path,
+      uri.toString(),
       options: Options(
         headers: {
           "Accept": "application/vnd.github.v3+json",
